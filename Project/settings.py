@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'music.apps.MusicConfig',
 ]
 
@@ -108,3 +109,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This is where media files will get stored on the project folder
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# This is the file the browser will reference over http
+MEDIA_URL = '/media/'

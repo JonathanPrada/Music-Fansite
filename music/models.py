@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
+# Access the database
 from django.db import models
+# Gets URL
+from django.core.urlresolvers import reverse
 
 
 # Our music table blueprints here
@@ -7,7 +10,13 @@ class Album(models.Model):
     artist = models.CharField(max_length=255)
     album_title = models.CharField(max_length=255)
     genre = models.CharField(max_length=100)
-    album_logo = models.CharField(max_length=1000)
+    # Allows uploading of images
+    album_logo = models.FileField()
+
+    # When a new album submitted, a new url with the pk gets returned
+    def get_absolute_url(self):
+        # Pass in pk to DetailView in views.py through url.py
+        return reverse('music:detail', kwargs={'pk': self.pk})
 
     # When requested through shell, do a string representation
     # of the columns included in the definition
